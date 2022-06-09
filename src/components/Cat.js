@@ -5,7 +5,7 @@ import { getCats } from "../redux/actions/catActions";
 function Cat({ loading, error, data, getCats }) {
   useEffect(() => {
     getCats();
-  }, [getCats]);
+  }, []);
 
   return (
     <div>
