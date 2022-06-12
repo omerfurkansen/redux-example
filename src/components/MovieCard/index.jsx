@@ -1,4 +1,5 @@
 import React from "react";
+import "./MovieCard.scss";
 
 export default function MovieCard({ data }) {
   return (
@@ -11,8 +12,6 @@ export default function MovieCard({ data }) {
           <div className="card-info">
             <h4>{data.Title}</h4>
             <p>{data.Year}</p>
-            <p>{data.Type}</p>
-            <p>{data.imdbID}</p>
           </div>
         </div>
       </div>
