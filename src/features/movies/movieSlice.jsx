@@ -9,15 +9,15 @@ const initialState = {
   status: "idle", // loading, idle, error
 };
 
-export const fetchAsyncMovies = createAsyncThunk("movies/fetchAsyncMovies", async () => {
-  const movieText = "Harry";
+export const fetchAsyncMovies = createAsyncThunk("movies/fetchAsyncMovies", async (movieText = "Harry") => {
+  movieText = movieText.toLowerCase();
   const response = await movieApi.get(`?apikey=${OMDB_API_KEY}&s=${movieText}&type=movie`);
   return response.data.Search;
 });
 
-export const fetchAsyncSeries = createAsyncThunk("movies/fetchAsyncSeries", async () => {
-  const movieText = "Friends";
-  const response = await movieApi.get(`?apikey=${OMDB_API_KEY}&s=${movieText}&type=series`);
+export const fetchAsyncSeries = createAsyncThunk("movies/fetchAsyncSeries", async (serieText = "Friends") => {
+  serieText = serieText.toLowerCase();
+  const response = await movieApi.get(`?apikey=${OMDB_API_KEY}&s=${serieText}&type=series`);
   return response.data.Search;
 });
 
