@@ -6,13 +6,18 @@ import "./MovieListing.scss";
 export default function MovieListing() {
   const movies = useSelector((state) => state.movies.movies);
   const series = useSelector((state) => state.movies.series);
+  const status = useSelector((state) => state.movies.status);
 
   const renderContent = (content) => {
-    if (content) {
+    if (content && status === "idle") {
       return content.map((contentItem, id) => {
         return <MovieCard key={id} data={contentItem} />;
       });
     }
+    if (status === "loading") {
+      return <div className="movie-section">Loading...</div>;
+    }
+    return <div className="movie-section">Not Found</div>;
   };
 
   return (

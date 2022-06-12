@@ -6,7 +6,7 @@ const initialState = {
   movies: [],
   series: [],
   selectedContent: null,
-  status: "success", // loading, success, error
+  status: "idle", // loading, idle, error
 };
 
 export const fetchAsyncMovies = createAsyncThunk("movies/fetchAsyncMovies", async () => {
@@ -30,8 +30,8 @@ const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    addMovies: (state, action) => {
-      state.movies = action.payload;
+    removeSelectedContent: (state) => {
+      state.selectedContent = null;
     },
   },
   extraReducers: {
@@ -55,9 +55,13 @@ const movieSlice = createSlice({
       state.status = "idle";
       state.selectedContent = action.payload;
     },
+    [fetchAsyncContentDetail.pending]: (state) => {
+      state.status = "loading";
+      state.selectedContent = null;
+    },
   },
 });
 
-export const { addMovies } = movieSlice.actions;
+export const { removeSelectedContent } = movieSlice.actions;
 
 export default movieSlice.reducer;
