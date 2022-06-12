@@ -5,10 +5,11 @@ import "./MovieListing.scss";
 
 export default function MovieListing() {
   const movies = useSelector((state) => state.movies.movies);
+  const series = useSelector((state) => state.movies.series);
 
-  const renderMovies = () => {
-    return movies.map((movie, id) => {
-      return <MovieCard key={id} data={movie} />;
+  const renderContent = (content) => {
+    return content.map((contentItem, id) => {
+      return <MovieCard key={id} data={contentItem} />;
     });
   };
 
@@ -16,7 +17,11 @@ export default function MovieListing() {
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2>Movies</h2>
-        <div className="movie-container">{renderMovies()}</div>
+        <div className="movie-container">{renderContent(movies)}</div>
+      </div>
+      <div className="series-list">
+        <h2>Series</h2>
+        <div className="movie-container">{renderContent(series)}</div>
       </div>
     </div>
   );

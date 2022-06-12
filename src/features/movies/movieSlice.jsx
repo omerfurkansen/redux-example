@@ -4,6 +4,7 @@ import { OMDB_API_KEY } from "../../common/constants";
 
 const initialState = {
   movies: [],
+  series: [],
   status: "success", // loading, success, error
 };
 
@@ -39,6 +40,10 @@ const movieSlice = createSlice({
     [fetchAsyncMovies.rejected]: (state) => {
       state.status = "error";
       state.movies = [];
+    },
+    [fetchAsyncSeries.fulfilled]: (state, action) => {
+      state.status = "idle";
+      state.series = action.payload;
     },
   },
 });
