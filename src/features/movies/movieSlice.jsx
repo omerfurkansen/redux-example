@@ -5,6 +5,7 @@ import { OMDB_API_KEY } from "../../common/constants";
 const initialState = {
   movies: [],
   series: [],
+  selectedContent: null,
   status: "success", // loading, success, error
 };
 
@@ -18,6 +19,11 @@ export const fetchAsyncSeries = createAsyncThunk("movies/fetchAsyncSeries", asyn
   const movieText = "Friends";
   const response = await movieApi.get(`?apikey=${OMDB_API_KEY}&s=${movieText}&type=series`);
   return response.data.Search;
+});
+
+export const fetchAsyncContentDetail = createAsyncThunk("movies/fetchAsyncContentDetail", async (imdbID) => {
+  const response = await movieApi.get(`?apikey=${OMDB_API_KEY}&i=${imdbID}&Plot=full`);
+  return response.data;
 });
 
 const movieSlice = createSlice({
@@ -44,6 +50,10 @@ const movieSlice = createSlice({
     [fetchAsyncSeries.fulfilled]: (state, action) => {
       state.status = "idle";
       state.series = action.payload;
+    },
+    [fetchAsyncContentDetail.fulfilled]: (state, action) => {
+      state.status = "idle";
+      state.selectedContent = action.payload;
     },
   },
 });

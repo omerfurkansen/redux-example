@@ -8,9 +8,11 @@ export default function MovieListing() {
   const series = useSelector((state) => state.movies.series);
 
   const renderContent = (content) => {
-    return content.map((contentItem, id) => {
-      return <MovieCard key={id} data={contentItem} />;
-    });
+    if (content) {
+      return content.map((contentItem, id) => {
+        return <MovieCard key={id} data={contentItem} />;
+      });
+    }
   };
 
   return (
