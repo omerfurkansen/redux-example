@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import MovieDetail from "./components/MovieDetail";
-import PageNotFound from "./components/PageNotFound";
+import Home from "./pages/Home";
+import MovieDetail from "./pages/MovieDetail";
+import PageNotFound from "./images/pnf.jpeg";
 
 export default function Router() {
   return (
@@ -10,7 +10,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:imdbID" element={<MovieDetail />} />
-        <Route element={<PageNotFound />} />
+        <Route path="*" element={<img src={PageNotFound} alt="Page Not Found" style={{ width: "100%" }} />} />
       </Routes>
     </div>
   );

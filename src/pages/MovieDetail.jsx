@@ -1,9 +1,61 @@
 import React, { useEffect } from "react";
-import "./MovieDetail.scss";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncContentDetail } from "../../features/movies/movieSlice";
-import { removeSelectedContent } from "../../features/movies/movieSlice";
+import { fetchAsyncContentDetail, removeSelectedContent } from "../features/movies/movieSlice";
+import loadingIcon from "../images/loading.svg";
+import styled from "styled-components";
+import Colors from "../common/colors";
+
+const MovieSection = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding: 40px 0;
+  color: ${Colors.fontColorPrimary};
+  font-weight: 400;
+`;
+
+const MovieRating = styled.div`
+  display: flex;
+  padding-left: 3px;
+  margin-top: 20px;
+  color: ${Colors.fontColorSecondary};
+
+  span {
+    margin-right: 20px;
+  }
+`;
+
+const MovieTitle = styled.div`
+  font-size: 40px;
+  color: ${Colors.fontColorPrimary};
+`;
+
+const MoviePlot = styled.div`
+  margin-top: 20px;
+  line-height: 1.8rem;
+`;
+
+const SectionLeft = styled.div`
+  margin-right: 40px;
+`;
+
+const SectionRight = styled.div`
+  margin-left: 40px;
+`;
+
+const MovieInfo = styled.div`
+  div span:first-child {
+    display: inline-block;
+    padding: 10px 0;
+    color: ${Colors.fontColorPrimary};
+    font-weight: 600;
+    width: 100px;
+  }
+
+  div span {
+    color: ${Colors.fontColorSecondary};
+  }
+`;
 
 export default function MovieDetail() {
   const { imdbID } = useParams();
@@ -14,10 +66,10 @@ export default function MovieDetail() {
   const renderContent = () => {
     if (selectedContent && status === "idle") {
       return (
-        <div className="movie-section">
-          <div className="section-left">
-            <div className="movie-title">{selectedContent.Title}</div>
-            <div className="movie-rating">
+        <MovieSection>
+          <SectionLeft>
+            <MovieTitle>{selectedContent.Title}</MovieTitle>
+            <MovieRating>
               <span>
                 IMDB Rating <i className="fa fa-star" /> : {selectedContent.imdbRating}
               </span>
@@ -30,9 +82,9 @@ export default function MovieDetail() {
               <span>
                 Year <i className="fa fa-calendar" /> : {selectedContent.Year}
               </span>
-            </div>
-            <div className="movie-plot">{selectedContent.Plot}</div>
-            <div className="movie-info">
+            </MovieRating>
+            <MoviePlot>{selectedContent.Plot}</MoviePlot>
+            <MovieInfo>
               <div>
                 <span>Director</span>
                 <span>{selectedContent.Director}</span>
@@ -53,18 +105,18 @@ export default function MovieDetail() {
                 <span>Awards</span>
                 <span>{selectedContent.Awards}</span>
               </div>
-            </div>
-          </div>
-          <div className="section-right">
+            </MovieInfo>
+          </SectionLeft>
+          <SectionRight>
             <img src={selectedContent.Poster} alt={selectedContent.Title} />
-          </div>
-        </div>
+          </SectionRight>
+        </MovieSection>
       );
     }
     if (status === "loading") {
-      return <div className="movie-section">Loading...</div>;
+      return <img src={loadingIcon} alt="Loading..." />;
     }
-    return <div className="movie-section">Not Found</div>;
+    return <h4 style={{ color: "white" }}>Not Found</h4>;
   };
 
   useEffect(() => {
