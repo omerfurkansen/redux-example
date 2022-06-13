@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import UserImage from "../images/user.png";
-import { useDispatch } from "react-redux";
-import { fetchAsyncMovies, fetchAsyncSeries, setSearch } from "../features/movies/movieSlice";
-import styled from "styled-components";
-import Colors from "../common/colors";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import UserImage from '../images/user.png';
+import { fetchAsyncMovies, fetchAsyncSeries, setSearch } from '../features/movies/movieSlice';
+import Colors from '../common/colors';
+import { useAppDispatch } from '../features/hooks';
 
 const HeaderStyle = styled.div`
   background-color: ${Colors.themeColorSecondary};
@@ -58,18 +58,18 @@ const SearchBar = styled.div`
 `;
 
 export default function Header() {
-  const dispatch = useDispatch();
-  const [term, setTerm] = useState("");
+  const dispatch = useAppDispatch();
+  const [term, setTerm] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTerm("");
+    setTerm('');
     if (term.length > 0) {
       dispatch(setSearch(true));
       dispatch(fetchAsyncMovies(term));
       dispatch(fetchAsyncSeries(term));
-      navigate("/");
+      navigate('/');
     }
   };
 

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Colors from "../common/colors";
+import React from 'react';
+import styled from 'styled-components';
+import Colors from '../common/colors';
 
 const FooterStyle = styled.div`
   position: absolute;

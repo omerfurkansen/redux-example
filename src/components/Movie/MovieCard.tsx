@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import Colors from "../../common/colors";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import Colors from '../../common/colors';
+import { MovieCardProps } from '../../types';
 
 const CardItem = styled.div`
   background: ${Colors.themeColorSecondary};
@@ -37,7 +38,7 @@ const CardInfo = styled.div`
   }
 `;
 
-export default function MovieCard({ data }) {
+export default function MovieCard({ data }: MovieCardProps) {
   return (
     <CardItem>
       <Link to={`/movie/${data.imdbID}`}>

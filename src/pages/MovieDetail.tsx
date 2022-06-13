@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncContentDetail, removeSelectedContent } from "../features/movies/movieSlice";
-import loadingIcon from "../images/loading.svg";
-import styled from "styled-components";
-import Colors from "../common/colors";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import {
+  fetchAsyncContentDetail,
+  removeSelectedContent,
+  selectSelectedContent,
+  selectStatus,
+} from '../features/movies/movieSlice';
+import loadingIcon from '../images/loading.svg';
+import Colors from '../common/colors';
+import { useAppDispatch, useAppSelector } from '../features/hooks';
 
 const MovieSection = styled.div`
   display: flex;
@@ -59,12 +64,12 @@ const MovieInfo = styled.div`
 
 export default function MovieDetail() {
   const { imdbID } = useParams();
-  const dispatch = useDispatch();
-  const selectedContent = useSelector((state) => state.movies.selectedContent);
-  const status = useSelector((state) => state.movies.status);
+  const dispatch = useAppDispatch();
+  const selectedContent = useAppSelector(selectSelectedContent);
+  const status = useAppSelector(selectStatus);
 
   const renderContent = () => {
-    if (selectedContent && status === "idle") {
+    if (selectedContent && status === 'idle') {
       return (
         <MovieSection>
           <SectionLeft>
@@ -113,15 +118,16 @@ export default function MovieDetail() {
         </MovieSection>
       );
     }
-    if (status === "loading") {
+    if (status === 'loading') {
       return <img src={loadingIcon} alt="Loading..." />;
     }
-    return <h4 style={{ color: "white" }}>Not Found</h4>;
+    return <h4 style={{ color: 'white' }}>Not Found</h4>;
   };
 
   useEffect(() => {
-    dispatch(fetchAsyncContentDetail(imdbID));
-    // write callback function to remove selected content
+    dispatch(fetchAsyncContentDetail(imdbID!));
+
+    // callback function to remove selected content
     return () => {
       dispatch(removeSelectedContent());
     };

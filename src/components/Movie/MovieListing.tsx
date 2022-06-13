@@ -1,9 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import MovieCard from "./MovieCard";
-import loadingIcon from "../../images/loading.svg";
-import styled from "styled-components";
-import Colors from "../../common/colors";
+import React from 'react';
+import styled from 'styled-components';
+import MovieCard from './MovieCard';
+import loadingIcon from '../../images/loading.svg';
+import Colors from '../../common/colors';
+import { useAppSelector } from '../../features/hooks';
+import { selectMovies, selectSeries, selectStatus } from '../../features/movies/movieSlice';
+import { Content } from '../../types';
 
 const ContentList = styled.div`
   margin: 20px 0;
@@ -26,17 +28,15 @@ const ContentContainer = styled.div`
 `;
 
 export default function MovieListing() {
-  const movies = useSelector((state) => state.movies.movies);
-  const series = useSelector((state) => state.movies.series);
-  const status = useSelector((state) => state.movies.status);
+  const movies = useAppSelector(selectMovies);
+  const series = useAppSelector(selectSeries);
+  const status = useAppSelector(selectStatus);
 
-  const renderContent = (content) => {
-    if (content && status === "idle") {
-      return content.map((contentItem, id) => {
-        return <MovieCard key={id} data={contentItem} />;
-      });
+  const renderContent = (content: Content[]) => {
+    if (content && status === 'idle') {
+      return content.map((contentItem, id) => <MovieCard key={id} data={contentItem} />);
     }
-    if (status === "loading") {
+    if (status === 'loading') {
       return <img src={loadingIcon} alt="Loading..." />;
     }
     return <h4>Not Found</h4>;
