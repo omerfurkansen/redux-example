@@ -1,3 +1,15 @@
-# redux-practice
+# Movie Application
 
-run the code if you want to use redux and typescript template: `yarn create react-app . --template redux-typescript` or `npx create-react-app . --template redux-typescript`
+This application is coded by using
+
+- React
+- Redux + Redux Thunk + Redux Toolkit
+- TypeScript
+- StyledComponents & Sass
+- Eslint
+
+You can basically search for the movies and see the details of it as well.
+
+# Demo:
+
+link will be pasted here
