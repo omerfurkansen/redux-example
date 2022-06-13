@@ -10,8 +10,22 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-array-index-key": "off",
+    "object-curly-newline": "off",
+    "no-param-reassign": "off",
+    "no-promise-executor-return": "off",
+    "import/no-cycle": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ]
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { FaSearch } from 'react-icons/fa';
 import UserImage from '../images/user.png';
 import { fetchAsyncMovies, fetchAsyncSeries, setSearch } from '../features/movies/movieSlice';
 import Colors from '../common/colors';
@@ -28,6 +29,10 @@ const UserImageWrapper = styled.div`
     height: 38px;
     border-radius: 50%;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const SearchBar = styled.div`
@@ -45,6 +50,10 @@ const SearchBar = styled.div`
       font-size: 20px;
       cursor: pointer;
       height: 38px;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
     }
   }
 
@@ -82,7 +91,7 @@ export default function Header() {
         <form onSubmit={handleSubmit}>
           <input type="text" value={term} placeholder="Search" onChange={(e) => setTerm(e.target.value)} />
           <button type="submit">
-            <i className="fas fa-search" />
+            <FaSearch />
           </button>
         </form>
       </SearchBar>

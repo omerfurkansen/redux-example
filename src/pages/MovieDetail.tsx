@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { FaStar, FaUsers, FaClock, FaCalendar } from 'react-icons/fa';
 import {
   fetchAsyncContentDetail,
   removeSelectedContent,
@@ -17,6 +18,13 @@ const MovieSection = styled.div`
   padding: 40px 0;
   color: ${Colors.fontColorPrimary};
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+  }
 `;
 
 const MovieRating = styled.div`
@@ -42,10 +50,18 @@ const MoviePlot = styled.div`
 
 const SectionLeft = styled.div`
   margin-right: 40px;
+
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 const SectionRight = styled.div`
   margin-left: 40px;
+
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 const MovieInfo = styled.div`
@@ -76,16 +92,16 @@ export default function MovieDetail() {
             <MovieTitle>{selectedContent.Title}</MovieTitle>
             <MovieRating>
               <span>
-                IMDB Rating <i className="fa fa-star" /> : {selectedContent.imdbRating}
+                IMDB Rating <FaStar color="#ffb400" /> : {selectedContent.imdbRating}
               </span>
               <span>
-                IMDB Votes <i className="fa fa-users" /> : {selectedContent.imdbVotes}
+                IMDB Votes <FaUsers color="#fafafa" /> : {selectedContent.imdbVotes}
               </span>
               <span>
-                Runtime <i className="fa fa-clock" /> : {selectedContent.Runtime}
+                Runtime <FaClock color="rgb(191, 213, 214)" /> : {selectedContent.Runtime}
               </span>
               <span>
-                Year <i className="fa fa-calendar" /> : {selectedContent.Year}
+                Year <FaCalendar color="peachpuff" /> : {selectedContent.Year}
               </span>
             </MovieRating>
             <MoviePlot>{selectedContent.Plot}</MoviePlot>
