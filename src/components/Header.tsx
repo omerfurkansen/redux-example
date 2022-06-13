@@ -22,7 +22,7 @@ const Logo = styled.div`
   font-weight: 600;
 `;
 
-const UserImageWrapper = styled.div`
+const UserImageWrapper = styled.a`
   &,
   img {
     width: 38px;
@@ -95,7 +95,7 @@ export default function Header() {
           </button>
         </form>
       </SearchBar>
-      <UserImageWrapper>
+      <UserImageWrapper href="https://www.github.com/omerfurkansen" target="_blank">
         <img src={UserImage} alt="User" />
       </UserImageWrapper>
     </HeaderStyle>

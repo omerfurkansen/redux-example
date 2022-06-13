@@ -14,14 +14,22 @@ const CardItem = styled.div`
   }
 `;
 
-const CardTop = styled.div`
+const CardTop = styled.div<({ image: string })>`
   height: 300px;
+  // background: url(${(props) => props.image}) no-repeat center;
+  // background-size: cover;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${Colors.fontColorPrimary};
+
+  position: relative;
+
+  // img {
+  //   height: 100%;
+  //   object-fit: cover;
+  // }
 `;
 
 const CardBottom = styled.div`
@@ -42,8 +50,23 @@ export default function MovieCard({ data }: MovieCardProps) {
   return (
     <CardItem>
       <Link to={`/movie/${data.imdbID}`}>
-        <CardTop>
-          <img src={data.Poster} alt={data.Title} />
+        <CardTop image={data.Poster}>
+          <div
+            style={{
+              position: 'absolute',
+              objectFit: 'cover',
+              height: '100%',
+              width: '100%',
+              filter: 'blur(4px)',
+              opacity: 0.3,
+              background: `url(${data.Poster})`,
+            }}
+          />
+          <img
+            src={data.Poster}
+            alt={data.Title}
+            style={{ position: 'absolute', height: '100%', objectFit: 'cover', zIndex: 8 }}
+          />
         </CardTop>
         <CardBottom>
           <CardInfo>

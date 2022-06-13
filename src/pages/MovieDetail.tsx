@@ -135,7 +135,18 @@ export default function MovieDetail() {
       );
     }
     if (status === 'loading') {
-      return <img src={loadingIcon} alt="Loading..." />;
+      return (
+        <img
+          src={loadingIcon}
+          alt="Loading..."
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      );
     }
     return <h4 style={{ color: 'white' }}>Not Found</h4>;
   };
