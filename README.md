@@ -10,6 +10,12 @@ This application is coded by using
 
 You can basically search for the movies and see the details of it as well.
 
+# To run in your local
+
+1. Paste your API key from OMDB into `.env` file
+2. Run `yarn install`
+3. Run `yarn start`
+
 # Demo:
 
-link will be pasted here
+https://redux-movie-application.netlify.app/
