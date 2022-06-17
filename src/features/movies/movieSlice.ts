@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import httpClient from 'client/httpClient';
+import { OMDB_API_KEY } from 'common/constants';
+import { MovieState } from 'types';
 import { RootState } from '../store';
-import httpClient from '../../client/httpClient';
-import { OMDB_API_KEY } from '../../common/constants';
-import { MovieState } from '../../types';
 
 const initialState: MovieState = {
   movies: [],
@@ -51,6 +51,7 @@ const movieSlice = createSlice({
     builder
       .addCase(fetchAsyncMovies.pending, (state) => {
         state.status = 'loading';
+        state.movies = [];
       })
       .addCase(fetchAsyncMovies.fulfilled, (state, action) => {
         state.movies = action.payload;
@@ -61,6 +62,7 @@ const movieSlice = createSlice({
       })
       .addCase(fetchAsyncSeries.pending, (state) => {
         state.status = 'loading';
+        state.series = [];
       })
       .addCase(fetchAsyncSeries.fulfilled, (state, action) => {
         state.series = action.payload;
@@ -71,6 +73,7 @@ const movieSlice = createSlice({
       })
       .addCase(fetchAsyncContentDetail.pending, (state) => {
         state.status = 'loading';
+        state.selectedContent = null;
       })
       .addCase(fetchAsyncContentDetail.fulfilled, (state, action) => {
         state.selectedContent = action.payload;
