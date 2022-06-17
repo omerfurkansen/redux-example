@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Colors from '../../common/colors';
-import { MovieCardProps } from '../../types';
+import Colors from 'common/colors';
+import { MovieCardProps } from 'types';
 
 const CardItem = styled.div`
   background: ${Colors.themeColorSecondary};
@@ -16,20 +16,29 @@ const CardItem = styled.div`
 
 const CardTop = styled.div<({ image: string })>`
   height: 300px;
-  // background: url(${(props) => props.image}) no-repeat center;
-  // background-size: cover;
-
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${Colors.fontColorPrimary};
-
   position: relative;
+`;
 
-  // img {
-  //   height: 100%;
-  //   object-fit: cover;
-  // }
+const BackgroundImage = styled.div<{ image: string }>`
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  background: url(${({ image }) => image});
+  opacity: 0.3;
+  filter: blur(4px);
+`;
+
+const CardImage = styled.img`
+  position: absolute;
+  object-fit: cover;
+  height: 100%;
+  max-width: 100%;
+  z-index: 10;
 `;
 
 const CardBottom = styled.div`
@@ -51,21 +60,10 @@ export default function MovieCard({ data }: MovieCardProps) {
     <CardItem>
       <Link to={`/movie/${data.imdbID}`}>
         <CardTop image={data.Poster}>
-          <div
-            style={{
-              position: 'absolute',
-              objectFit: 'cover',
-              height: '100%',
-              width: '100%',
-              filter: 'blur(4px)',
-              opacity: 0.3,
-              background: `url(${data.Poster})`,
-            }}
-          />
-          <img
+          <BackgroundImage image={data.Poster} />
+          <CardImage
             src={data.Poster}
             alt={data.Title}
-            style={{ position: 'absolute', height: '100%', objectFit: 'cover', zIndex: 8 }}
           />
         </CardTop>
         <CardBottom>

@@ -7,10 +7,10 @@ import {
   removeSelectedContent,
   selectSelectedContent,
   selectStatus,
-} from '../features/movies/movieSlice';
-import loadingIcon from '../images/loading.svg';
-import Colors from '../common/colors';
-import { useAppDispatch, useAppSelector } from '../features/hooks';
+} from 'features/movies/movieSlice';
+import loadingIcon from 'images/loading.svg';
+import Colors from 'common/colors';
+import { useAppDispatch, useAppSelector } from 'features/hooks';
 
 const MovieSection = styled.div`
   display: flex;
