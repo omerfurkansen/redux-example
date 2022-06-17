@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import loadingIcon from 'images/loading.svg';
+import Colors from 'common/colors';
+import { useAppSelector } from 'features/hooks';
+import { Content } from 'types';
+import { selectMovies, selectSeries, selectStatus } from 'features/movies/movieSlice';
 import MovieCard from './MovieCard';
-import loadingIcon from '../../images/loading.svg';
-import Colors from '../../common/colors';
-import { useAppSelector } from '../../features/hooks';
-import { selectMovies, selectSeries, selectStatus } from '../../features/movies/movieSlice';
-import { Content } from '../../types';
 
 const ContentList = styled.div`
   margin: 20px 0;

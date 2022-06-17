@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
-import UserImage from '../images/user.png';
-import { fetchAsyncMovies, fetchAsyncSeries, setSearch } from '../features/movies/movieSlice';
-import Colors from '../common/colors';
-import { useAppDispatch } from '../features/hooks';
+import UserImage from 'images/user.png';
+import { fetchAsyncMovies, fetchAsyncSeries, setSearch } from 'features/movies/movieSlice';
+import Colors from 'common/colors';
+import { useAppDispatch } from 'features/hooks';
 
 const HeaderStyle = styled.div`
   background-color: ${Colors.themeColorSecondary};
